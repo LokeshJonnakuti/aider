@@ -8,7 +8,7 @@ import aider
 
 def check_version(print_cmd):
     try:
-        response = requests.get("https://pypi.org/pypi/aider-chat/json")
+        response = requests.get("https://pypi.org/pypi/aider-chat/json", timeout=60)
         data = response.json()
         latest_version = data["info"]["version"]
         current_version = aider.__version__
