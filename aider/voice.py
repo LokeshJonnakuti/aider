@@ -74,7 +74,7 @@ class Voice:
     def raw_record_and_transcribe(self, history, language):
         self.q = queue.Queue()
 
-        filename = tempfile.mktemp(suffix=".wav")
+        filename = tempfile.mkstemp(suffix=".wav")
 
         sample_rate = 16000  # 16kHz
 
