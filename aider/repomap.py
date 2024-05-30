@@ -1,6 +1,5 @@
 import colorsys
 import os
-import random
 import sys
 from collections import Counter, defaultdict, namedtuple
 from pathlib import Path
@@ -18,6 +17,7 @@ from tree_sitter_languages import get_language, get_parser
 from aider import models
 
 from .dump import dump  # noqa: F402
+import secrets
 
 Tag = namedtuple("Tag", "rel_fname fname line name kind".split())
 
@@ -409,7 +409,7 @@ def find_src_files(directory):
 
 
 def get_random_color():
-    hue = random.random()
+    hue = secrets.SystemRandom().random()
     r, g, b = [int(x * 255) for x in colorsys.hsv_to_rgb(hue, 1, 0.75)]
     res = f"#{r:02x}{g:02x}{b:02x}"
     return res
