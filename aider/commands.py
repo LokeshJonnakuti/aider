@@ -5,11 +5,11 @@ from pathlib import Path
 
 import git
 from prompt_toolkit.completion import Completion
+from security import safe_command
 
 from aider import prompts, voice
 
 from .dump import dump  # noqa: F401
-from security import safe_command
 
 
 class Commands:
@@ -371,7 +371,9 @@ class Commands:
         try:
             args = "git " + args
             env = dict(GIT_EDITOR="true", **subprocess.os.environ)
-            result = safe_command.run(subprocess.run, args,
+            result = safe_command.run(
+                subprocess.run,
+                args,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 text=True,
@@ -391,7 +393,13 @@ class Commands:
         "Run a shell command and optionally add the output to the chat"
         combined_output = None
         try:
-            result = safe_command.run(subprocess.run, args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, shell=True
+            result = safe_command.run(
+                subprocess.run,
+                args,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                shell=True,
             )
             combined_output = result.stdout
         except Exception as e:
