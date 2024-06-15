@@ -7,6 +7,7 @@ import subprocess
 import sys
 
 from packaging import version
+from security import safe_command
 
 
 def main():
@@ -94,7 +95,7 @@ def main():
     for cmd in git_commands:
         print(f"Running: {' '.join(cmd)}")
         if not dry_run:
-            subprocess.run(cmd, check=True)
+            safe_command.run(subprocess.run, cmd, check=True)
 
     updated_dev_content = re.sub(
         r'__version__ = ".+?"', f'__version__ = "{incremented_version}-dev"', content
@@ -116,7 +117,7 @@ def main():
     for cmd in git_commands_dev:
         print(f"Running: {' '.join(cmd)}")
         if not dry_run:
-            subprocess.run(cmd, check=True)
+            safe_command.run(subprocess.run, cmd, check=True)
 
 
 if __name__ == "__main__":
