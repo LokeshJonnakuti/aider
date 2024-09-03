@@ -4,6 +4,7 @@ import datetime
 import json
 import os
 import re
+import secrets
 import shutil
 import subprocess
 import time
@@ -28,7 +29,6 @@ from aider import models
 from aider.coders import Coder
 from aider.dump import dump  # noqa: F401
 from aider.io import InputOutput
-import secrets
 
 BENCHMARK_DNAME = Path(os.environ["AIDER_BENCHMARK_DIR"])
 

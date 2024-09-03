@@ -1,5 +1,6 @@
 import colorsys
 import os
+import secrets
 import sys
 from collections import Counter, defaultdict, namedtuple
 from pathlib import Path
@@ -17,7 +18,6 @@ from tree_sitter_languages import get_language, get_parser
 from aider import models
 
 from .dump import dump  # noqa: F402
-import secrets
 
 Tag = namedtuple("Tag", "rel_fname fname line name kind".split())
 
