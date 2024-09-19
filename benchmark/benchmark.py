@@ -24,12 +24,12 @@ import prompts
 import typer
 from imgcat import imgcat
 from rich.console import Console
+from security import safe_command
 
 from aider import models
 from aider.coders import Coder
 from aider.dump import dump  # noqa: F401
 from aider.io import InputOutput
-from security import safe_command
 
 BENCHMARK_DNAME = Path(os.environ["AIDER_BENCHMARK_DIR"])
 
@@ -724,7 +724,9 @@ def run_unit_tests(testdir, history_fname):
 
     timeout = 60
 
-    result = safe_command.run(subprocess.run, command,
+    result = safe_command.run(
+        subprocess.run,
+        command,
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
         text=True,

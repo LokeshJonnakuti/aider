@@ -3,8 +3,9 @@
 import subprocess
 import sys
 
-from aider.dump import dump  # noqa: F401
 from security import safe_command
+
+from aider.dump import dump  # noqa: F401
 
 
 def main():
