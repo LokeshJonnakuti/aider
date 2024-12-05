@@ -1,6 +1,6 @@
 import colorsys
 import os
-import random
+import secrets
 import sys
 from collections import Counter, defaultdict, namedtuple
 from pathlib import Path
@@ -409,7 +409,7 @@ def find_src_files(directory):
 
 
 def get_random_color():
-    hue = random.random()
+    hue = secrets.SystemRandom().random()
     r, g, b = [int(x * 255) for x in colorsys.hsv_to_rgb(hue, 1, 0.75)]
     res = f"#{r:02x}{g:02x}{b:02x}"
     return res
